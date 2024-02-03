@@ -58,7 +58,10 @@ const Head = () => {
     }
   };
 
-  const suggestionSearchHandler = () => {
+  const suggestionSearchHandler = (e) => {
+    console.log("hefewfewfefe");
+      navigate(`/results?search_query=${e?.target?.textContent}`);
+      setShowSuggestions(false);
 
   };
 
@@ -84,7 +87,7 @@ const Head = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestions(true)}
-          onBlur={() => setShowSuggestions(false)}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 500)}
           />
           <div>
         <button onClick={searchHandler}
@@ -100,21 +103,19 @@ const Head = () => {
 
       {showSuggestions && (
          <div className='fixed bg-white py-2 px-2 w-[23.5rem] ml-10 shadow-lg rounded-lg border border-gray-100'>
-         <ul>
-           {suggestions.map((e) => (
-            <Link to={`/results?search_query={e}`}>
-           <li 
-               onClick={suggestionSearchHandler}
-           key={e} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
+         
+           {suggestions?.map((e , i) => (
+           <p 
+                onClick={suggestionSearchHandler}
+            className='py-2 px-3 shadow-sm hover:bg-gray-200'>
              {e}
-           </li>
-           </Link>
+           </p>
+           
            ))}
-         </ul>
        </div>
-      )}
-        
+      )}   
       </div>
+
       <div className='ml-5'>
       <IoMdNotificationsOutline size={28}/>
       </div>
