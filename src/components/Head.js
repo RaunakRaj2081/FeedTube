@@ -6,6 +6,8 @@ import { YOUTUBE_SEARCH_API } from '../utils/constants';
 import {cacheResults} from "../utils/searchSlice";
 import { FaMicrophone } from "react-icons/fa6";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
 
@@ -14,6 +16,7 @@ const Head = () => {
   const [showSuggestions , setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     
@@ -47,6 +50,18 @@ const Head = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   }
+
+  const searchHandler = () => {
+    setShowSuggestions(false);
+    if(searchQuery) {
+      navigate(`/results?search_query=${searchQuery}`);
+    }
+  };
+
+  const suggestionSearchHandler = () => {
+
+  };
+
   return (
     <div className='grid grid-flow-col p-1 m-2 shadow-lg items-center'>
 
@@ -72,7 +87,8 @@ const Head = () => {
           onBlur={() => setShowSuggestions(false)}
           />
           <div>
-        <button className="border border-gray-400 rounded-r-full p-2 py-2 h-[41px] bg-slate-50">
+        <button onClick={searchHandler}
+        className="border border-gray-400 rounded-r-full p-2 py-2 h-[41px] bg-slate-50">
           <IoIosSearch size={25} style={{color :"gray-400"}}/>
           </button>
           </div>
@@ -86,9 +102,14 @@ const Head = () => {
          <div className='fixed bg-white py-2 px-2 w-[23.5rem] ml-10 shadow-lg rounded-lg border border-gray-100'>
          <ul>
            {suggestions.map((e) => (
-           <li key={e} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
+            <Link to={`/results?search_query={e}`}>
+           <li 
+               onClick={suggestionSearchHandler}
+           key={e} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
              {e}
-           </li>))}
+           </li>
+           </Link>
+           ))}
          </ul>
        </div>
       )}

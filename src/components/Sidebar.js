@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   
   return (
-    <div className='p-5 shadow-lg w-48'>
+    <div className='p-5 shadow-lg w-48 mt-20'>
       <ul className='text-lg'>
         <Link to="/">
         <li className='flex hover:bg-gray-200 rounded-lg'>
