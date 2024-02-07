@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const commentsData = [
   {
@@ -103,10 +103,26 @@ const CommentsList = ({ comments }) => {
 };
 
 const CommentsContainer = () => {
+
+  const [text,setText] = useState("...show more");
+  const[showFullContent , setShowFullContent] = useState(false);
+
+  const handleReadMoreClick = () => {
+    setShowFullContent(!showFullContent);
+    if(showFullContent){
+      setText("...show more");
+    }
+    else{
+      setText("...show less");
+    }
+    
+  }
   return (
-    <div className="m-5 p-2">
-      <h1 className="text-2xl font-bold">Comments: </h1>
-      <CommentsList comments={commentsData} />
+    <div className="m-5 p-2 bg-gray-200 rounded-lg w-[800px] ml-12">
+      <h1 className="text-2xl">Comments: self made momments ...</h1>
+      { showFullContent && 
+        <CommentsList comments={commentsData} />}
+      <button className='text-cyan-800 font-semibold' onClick={handleReadMoreClick}> {text}</button>
     </div>
   );
 };
