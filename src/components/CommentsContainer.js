@@ -119,7 +119,7 @@ const CommentsContainer = () => {
   }
   return (
     <div className="m-5 p-2 bg-gray-200 rounded-lg w-[800px] ml-12">
-      <h1 className="text-2xl">Comments: self made momments ...</h1>
+      <h1 className="text-2xl">Comments: self made comments ...</h1>
       { showFullContent && 
         <CommentsList comments={commentsData} />}
       <button className='text-cyan-800 font-semibold' onClick={handleReadMoreClick}> {text}</button>

@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import CommentsContainer from './CommentsContainer';
 import LiveChat from './LiveChat';
 import VideoInfo from './VideoInfo';
+import YtComments from './YtComments';
 
 const WatchPage = () => {
 
@@ -37,6 +38,7 @@ const WatchPage = () => {
     <div className='-mt-12'>
     <VideoInfo videoId={searchParams.get("v")}/>
     <CommentsContainer />
+    <YtComments videoId={searchParams.get("v")} />
     </div>
     
     </div>
