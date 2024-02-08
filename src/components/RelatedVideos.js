@@ -34,7 +34,7 @@ const RelatedVideos = () => {
         <Link 
             className='flex-shrink' 
             key={index} 
-            to={`/watch?v=${videoId}`}
+            to={`/watch?v=${video?.contentDetails?.upload?.videoId || video?.contentDetails?.playlistItem?.resourceId?.videoId || ''}`}
         >
             <VideoCard info={video} />
         </Link>
