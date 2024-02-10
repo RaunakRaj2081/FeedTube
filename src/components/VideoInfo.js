@@ -1,5 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import { GOOGLE_API_KEY } from '../utils/constants';
+import { useSelector } from 'react-redux';
 
 const VideoInfo = ({videoId}) => {
   const[videoDetails, setVideoDetails] = useState({});
@@ -56,6 +57,7 @@ const VideoInfo = ({videoId}) => {
           ...updatedVideoDetails,
       }));
   }
+  const theme = useSelector((store) => store.app.isDarkMode);
   return (
     <div className='ml-12 mt-5'>
       <div className='font-bold text-xl w-[800px]'>{videoDetails?.title}</div>
@@ -68,7 +70,7 @@ const VideoInfo = ({videoId}) => {
       <div className='text-sm ml-11 -mt-2'>{videoDetails.subscriberCount/1000}K subscribers</div>
       </div>
 
-      <div className='w-[800px] bg-gray-200 rounded-lg p-1 mt-3 pl-3'>
+      <div className={`w-[800px] bg-gray-200 rounded-lg p-1 mt-3 pl-3 ${theme === true ?'bg-gray-900 text-white' : "" }`}>
       <div className='mt-5 flex'>
         <div className=''>{Math.floor(videoDetails?.viewCount/1000)}K views</div>
         <div className='ml-5'> {videoDetails?.publishedAt?.slice(0,10)

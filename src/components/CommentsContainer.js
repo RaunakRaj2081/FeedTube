@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const commentsData = [
   {
@@ -117,8 +118,9 @@ const CommentsContainer = () => {
     }
     
   }
+  const theme = useSelector((store) => store.app.isDarkMode);
   return (
-    <div className="m-5 p-2 bg-gray-200 rounded-lg w-[800px] ml-12">
+    <div className={`m-5 p-2 bg-gray-200 rounded-lg w-[800px] ml-12 ${theme === true ?'bg-gray-900 text-white' : "" }`}>
       <h1 className="text-2xl">Comments: self made comments ...</h1>
       { showFullContent && 
         <CommentsList comments={commentsData} />}

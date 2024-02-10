@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {toggleMenu} from "../utils/appSlice";
+import {changeTheme, toggleMenu} from "../utils/appSlice";
 import { IoIosSearch } from "react-icons/io";
 import { YOUTUBE_SEARCH_API } from '../utils/constants';
 import {cacheResults} from "../utils/searchSlice";
@@ -8,6 +8,8 @@ import { FaMicrophone } from "react-icons/fa6";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineNightlight } from "react-icons/md";
 
 const Head = () => {
 
@@ -15,6 +17,7 @@ const Head = () => {
   const [suggestions , setSuggestions] = useState([]);
   const [showSuggestions , setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
+  const theme = useSelector((store) => store.app.isDarkMode);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,8 +68,12 @@ const Head = () => {
 
   };
 
+  const changeThemeHandler = () => {
+    dispatch(changeTheme());
+  }
+
   return (
-    <div className='grid grid-flow-col p-1 m-2 shadow-lg items-center'>
+    <div className={`grid grid-flow-col p-1 m-2 shadow-lg items-center ${theme === true ?'bg-black text-white' : "" }`}>
 
       <div className='flex col-span-1 '>
         <img 
@@ -115,6 +122,9 @@ const Head = () => {
        </div>
       )}   
       </div>
+     <div className=' mt-1 bg-gray-200 rounded-full w-10 p-1' onClick={changeThemeHandler}>
+    { theme === true ? <MdOutlineLightMode size={28}/> :<MdOutlineNightlight size={28}/>} 
+     </div>
 
       <div className='ml-5'>
       <IoMdNotificationsOutline size={28}/>

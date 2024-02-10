@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {addMessage} from "../utils/chatSlice";
 import { generateRandomName, makeRandomMessage } from '../utils/helper';
 
+
 const LiveChat = () => {
     const dispatch = useDispatch();
     
     const ChatMessages = useSelector((store) => store.chat.messages);
 
     const [liveMessage , setLiveMessage] = useState("");
+    const theme = useSelector((store) => store.app.isDarkMode);
 
     useEffect(() => {
         const i = setInterval(() => {
@@ -27,8 +29,8 @@ const LiveChat = () => {
     })
   return (
     <>
-    <div className='h-[400px] ml-2 p-2 border border-black bg-slate-100 rounded-lg w-[410px] overflow-y-scroll flex flex-col-reverse'>
-      <div>
+    <div className={`h-[400px] ml-2 p-2 border border-black bg-slate-100 rounded-lg w-[410px] overflow-y-scroll flex flex-col-reverse ${theme === true ?'bg-gray-900 text-white' : "" }`}>
+      <div className={`${theme === true ?'bg-gray-900 text-white' : "" }`}>
       {
         ChatMessages?.map((chat,index) => 
         (<ChatMessage key={index}

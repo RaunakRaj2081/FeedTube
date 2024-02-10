@@ -11,6 +11,7 @@ import { TbHelp } from "react-icons/tb";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  
 
   // early return
   if(!isMenuOpen) return null;

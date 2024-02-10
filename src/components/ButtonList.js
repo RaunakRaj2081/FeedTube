@@ -1,9 +1,11 @@
 import React from 'react'
 import Button from './Button';
+import { useSelector } from 'react-redux';
 
 const ButtonList = () => {
+  const theme = useSelector((store) => store.app.isDarkMode);
   return (
-    <div className='flex pl-2 gap-5 ml-3 relative'>
+    <div className={`flex pl-2 gap-5 ml-3 relative ${theme === true ?'bg-black text-white' : "" }`}>
       <Button name="All"/>
       <Button name="Gaming"/>
       <Button name="Songs"/>
