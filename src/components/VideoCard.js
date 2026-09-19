@@ -6,7 +6,7 @@ const VideoCard = ({info}) => {
     const Title = title.slice(0,90);
 
   return (
-    <div className='p-2 m-3 w-72 shadow-lg'>
+    <div className='p-2 m-3 w-80 shadow-lg'>
       <img className='rounded-lg' alt="thumbnail" src={thumbnails.medium.url} />
       <ul>
         <li className='font-bold py-2'>{Title}</li>
